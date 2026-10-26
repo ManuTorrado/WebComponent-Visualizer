@@ -1,0 +1,27 @@
+:root { color-scheme: light dark; }
+* { box-sizing: border-box; }
+body { padding: 0; margin: 0; color: var(--vscode-foreground); font-family: var(--vscode-font-family); font-size: 12px; background: var(--vscode-editor-background); }
+header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--vscode-panel-border); }
+header > div { display: flex; align-items: center; gap: 9px; }
+.badge { padding: 5px; font-size: 10px; font-weight: bold; color: var(--vscode-button-foreground); background: var(--vscode-button-background); border-radius: 5px; }
+#status { margin-left: auto; color: var(--vscode-descriptionForeground); }
+button { background: var(--vscode-button-background); color: var(--vscode-button-foreground); border: 0; border-radius: 3px; padding: 7px 12px; cursor: pointer; white-space: nowrap; }
+button:hover { background: var(--vscode-button-hoverBackground); }
+button:focus-visible, input:focus, textarea:focus, #screen:focus { outline: 1px solid var(--vscode-focusBorder); outline-offset: 2px; }
+form { padding: 14px 18px; border-bottom: 1px solid var(--vscode-panel-border); }
+.row { display: flex; align-items: end; gap: 10px; flex-wrap: wrap; }
+label { display: flex; flex-direction: column; gap: 6px; color: var(--vscode-descriptionForeground); }
+.row label:first-child { flex: 1; min-width: 160px; }
+input, textarea { font: inherit; color: var(--vscode-input-foreground); border: 1px solid var(--vscode-input-border, transparent); background: var(--vscode-input-background); border-radius: 3px; padding: 6px 8px; }
+input[type=number] { width: 76px; }
+input[type=color] { width: 42px; height: 29px; padding: 2px; }
+details { margin-top: 14px; }
+summary { color: var(--vscode-descriptionForeground); cursor: pointer; }
+.editors { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 12px; }
+textarea { resize: vertical; width: 100%; font-family: var(--vscode-editor-font-family); font-size: 12px; }
+#stage { padding: 24px; min-height: 250px; overflow: auto; background-color: var(--vscode-sideBar-background); background-image: linear-gradient(45deg, #8888880a 25%, transparent 25%, transparent 75%, #8888880a 75%), linear-gradient(45deg, #8888880a 25%, transparent 25%, transparent 75%, #8888880a 75%); background-size: 20px 20px; background-position: 0 0, 10px 10px; }
+#screen { display: block; max-width: 100%; height: auto; margin: auto; box-shadow: 0 4px 24px #0002; touch-action: none; }
+#screen[hidden], [hidden] { display: none !important; }
+#placeholder { text-align: center; padding: 80px 20px; color: var(--vscode-descriptionForeground); }
+#error { white-space: pre-wrap; overflow-wrap: anywhere; margin: 14px 18px; padding: 12px; color: var(--vscode-errorForeground); border: 1px solid var(--vscode-inputValidation-errorBorder); background: var(--vscode-inputValidation-errorBackground); }
+footer { display: flex; justify-content: space-between; gap: 12px; padding: 10px 18px; color: var(--vscode-descriptionForeground); font-size: 11px; border-top: 1px solid var(--vscode-panel-border); }

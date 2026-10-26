@@ -1,0 +1,46 @@
+{
+  "name": "wc-visualizer",
+  "displayName": "Web Component Visualizer",
+  "description": "Interactive Web Component previews with a reusable background Chromium browser.",
+  "version": "0.1.0",
+  "publisher": "wc-visualizer",
+  "license": "MIT",
+  "engines": { "vscode": "^1.99.0" },
+  "categories": ["Visualization", "Other"],
+  "main": "./dist/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "capabilities": { "untrustedWorkspaces": { "supported": false }, "virtualWorkspaces": false },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -p . --watch",
+    "check": "tsc -p . --noEmit",
+    "test": "node --import tsx --test test/*.test.ts",
+    "test:browser": "node --import tsx --test test/browser.integration.ts",
+    "test:vscode": "npm run compile && node scripts/test-vscode.mjs",
+    "browser:install": "playwright install chromium",
+    "package": "node scripts/vsix.mjs",
+    "vscode:prepublish": "node scripts/package.mjs"
+  },
+  "contributes": {
+    "commands": [
+      { "command": "wcVisualizer.preview", "title": "Web Components: Preview Component", "icon": "$(open-preview)" },
+      { "command": "wcVisualizer.prewarm", "title": "Web Components: Prewarm Browser" },
+      { "command": "wcVisualizer.installBrowser", "title": "Web Components: Install Chromium" },
+      { "command": "wcVisualizer.stop", "title": "Web Components: Stop Background Browser" }
+    ],
+    "menus": {
+      "editor/title": [{ "command": "wcVisualizer.preview", "when": "resourceScheme == file && resourceExtname =~ /\\.(js|ts|mjs|jsx|tsx)$/", "group": "navigation" }],
+      "explorer/context": [{ "command": "wcVisualizer.preview", "when": "resourceScheme == file && resourceExtname =~ /\\.(js|ts|mjs|jsx|tsx)$/", "group": "navigation" }]
+    },
+    "configuration": {
+      "title": "Web Component Visualizer",
+      "properties": {
+        "wcVisualizer.prewarm": { "type": "boolean", "default": true, "description": "Preload installed Chromium when a trusted workspace opens." },
+        "wcVisualizer.executablePath": { "type": "string", "default": "", "scope": "machine", "description": "Optional absolute path to an existing Chromium or Chrome executable." },
+        "wcVisualizer.frameInterval": { "type": "number", "default": 250, "minimum": 100, "maximum": 2000, "description": "Milliseconds between preview frames. Hidden panels pause capture." }
+      }
+    }
+  },
+  "dependencies": { "esbuild": "^0.25.0", "playwright": "^1.51.0" },
+  "devDependencies": { "@types/node": "^22.0.0", "@types/vscode": "^1.99.0", "@vscode/vsce": "^3.3.0", "tsx": "^4.19.0", "typescript": "^5.8.0" }
+}
